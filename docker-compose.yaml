@@ -1,0 +1,37 @@
+version: '2'
+services:
+  mariadb:
+    image: 'bitnami/mariadb:10.3'
+    environment:
+      - MARIADB_USER=bn_moodle
+      - MARIADB_PASSWORD=bitnami
+      - MARIADB_DATABASE=bitnami_moodle
+      - MARIADB_ROOT_PASSWORD=Qwerty123+
+    volumes:
+      - './mariadb:/bitnami'
+  moodle:
+    image: 'bitnami/moodle:latest'
+    environment:
+      - MARIADB_HOST=mariadb
+      - MARIADB_PORT_NUMBER=3306
+#     Под каким юзером ходит в БД
+      - MOODLE_DATABASE_USER=bn_moodle
+      - MOODLE_DATABASE_NAME=bitnami_moodle
+      - MOODLE_DATABASE_PASSWORD=bitnami
+      
+#     Как зайти в ЛК
+      - MOODLE_USERNAME=user
+      - MOODLE_PASSWORD=pass
+      - MOODLE_EMAIL=denisqsound@gmail.com
+    ports:
+      - '1111:80'
+      - '2222:443'
+    volumes:
+      - './moodle:/bitnami'
+    depends_on:
+      - mariadb
+volumes:
+  mariadb_data:
+    driver: local
+  moodle_data:
+    driver: local
