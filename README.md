@@ -11,3 +11,10 @@ Docker files for Moodle
 [Sat Apr 25 22:37:54.065893 2020] [core:notice] [pid 96] AH00094: Command line: 'httpd -f /opt/bitnami/apache/conf/httpd.conf -D FOREGROUND'
 
 - После этого приложение доступно на 1111 порту
+
+
+
+
+Проблемы у Саши
+
+- Необходимо сделать chmod 777 mariadb
